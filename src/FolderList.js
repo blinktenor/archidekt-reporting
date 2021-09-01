@@ -1,7 +1,6 @@
 import './App.css';
 import DeckContainer from './DeckContainer';
 import React from 'react';
-import { fetchDecklistFromFolder } from './CardAPIService'
 
 
 function FolderList(props) {

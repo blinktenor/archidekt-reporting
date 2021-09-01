@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.css';
 import { render } from 'react-snapshot';
 import ArchidektReporting from './App';

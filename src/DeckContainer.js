@@ -13,7 +13,7 @@ function DeckContainer(props) {
     }
 
     setCardList(props.deck.id);
-  }, []); 
+  }, [props.deck.id]);
 
   if (loading) {
     return (
