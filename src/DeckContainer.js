@@ -4,6 +4,7 @@ import './container.css';
 function DeckContainer(props) {
   const [loading, setLoading] = React.useState(true);
   const [cards, setCards] = React.useState([]);
+  const { id } = props.deck;
 
   React.useEffect(() => {
     const setCardList = async (deckID) => {
@@ -12,8 +13,8 @@ function DeckContainer(props) {
       setLoading(false);
     }
 
-    setCardList(props.deck.id);
-  }, [props.deck.id]);
+    setCardList(id);
+  }, [id]); 
 
   if (loading) {
     return (
