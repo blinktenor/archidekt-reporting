@@ -5,16 +5,17 @@ function DeckContainer(props) {
   const [loading, setLoading] = React.useState(true);
   const [cards, setCards] = React.useState([]);
   const { id } = props.deck;
+  const { filterCallback } = props;
 
   React.useEffect(() => {
     const setCardList = async (deckID) => {
-      const filteredCards = await props.filterCallback(deckID);
+      const filteredCards = await filterCallback(deckID);
       setCards(filteredCards);
       setLoading(false);
     }
 
     setCardList(id);
-  }, [id]); 
+  }, [id, filterCallback]); 
 
   if (loading) {
     return (
