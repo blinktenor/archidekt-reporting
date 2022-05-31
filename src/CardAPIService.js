@@ -5,7 +5,7 @@ const headers = {"Access-Control-Allow-Origin": "*"};
 
 const fetchDecklistFromFolder = async (folderId) => {
   const response = await axios.get(
-    `https://www.archidekt.com/api/decks/folders/${folderId}/?dir=asc&orderBy=name`,
+    `https://archidekt.com/api/decks/folders/${folderId}/?dir=asc&orderBy=name`,
     headers,
   );
   const { decks } = response.data;
