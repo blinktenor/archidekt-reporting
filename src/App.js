@@ -11,9 +11,10 @@ function ArchidektReporting() {
   const [scryfallPrices, setScryfallPrices] = React.useState({});
   const [loading, setLoading] = React.useState(false);
   const [loaded, setLoaded] = React.useState(false);
-  const [search, setSearch] = React.useState("Folder");
+  const [search, setSearch] = React.useState("Single");
 
   const { value: searchId, bind: bindSearchId } = useInput('');
+  const { value: searchIp, bind: bindSearchIp } = useInput('');
 
   //<FolderList folderId={85681} />
   //521836
@@ -32,8 +33,8 @@ function ArchidektReporting() {
     }
   }
 
-  const fetchAndFilterCards = async (deckId) => {
-    const cards = await fetchCardlistFromDeck(deckId);
+  const fetchAndFilterCards = async (deckId, ip) => {
+    const cards = await fetchCardlistFromDeck(deckId, ip);
     return await filterDeck(cards);
   }
 
@@ -61,7 +62,12 @@ function ArchidektReporting() {
   if (!loading && !loaded) {
     return (
       <div className="ArchidektReporting">
-        <SearchContainer updateSearchSetting={updateSearchSetting} bindSearchId={bindSearchId} submitSearch={submitSearch} />
+        <SearchContainer 
+          updateSearchSetting={updateSearchSetting} 
+          bindSearchIp={bindSearchIp}
+          bindSearchId={bindSearchId} 
+          submitSearch={submitSearch} 
+        />
       </div>
     );
   } else if (!loaded) {
@@ -75,14 +81,24 @@ function ArchidektReporting() {
       const deck = {id: searchId, name: ''};
       return (
         <div className="ArchidektReporting">
-          <SearchContainer updateSearchSetting={updateSearchSetting} bindSearchId={bindSearchId} submitSearch={submitSearch} />
-          <DeckContainer deck={deck} filterCallback={fetchAndFilterCards} />
+          <SearchContainer 
+            updateSearchSetting={updateSearchSetting} 
+            bindSearchIp={bindSearchIp}
+            bindSearchId={bindSearchId} 
+            submitSearch={submitSearch} 
+          />
+          <DeckContainer deck={deck} filterCallback={fetchAndFilterCards} ip={searchIp} />
         </div>
       );
     } else {
       return (
         <div className="ArchidektReporting">
-          <SearchContainer updateSearchSetting={updateSearchSetting} bindSearchId={bindSearchId} submitSearch={submitSearch} />
+          <SearchContainer 
+            updateSearchSetting={updateSearchSetting} 
+            bindSearchIp={bindSearchIp}
+            bindSearchId={bindSearchId} 
+            submitSearch={submitSearch} 
+          />
           <FolderList decks={decks} filterCallback={fetchAndFilterCards} />
         </div>
       );
