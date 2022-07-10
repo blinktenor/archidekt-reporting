@@ -10,7 +10,7 @@ const fetchDecklistFromFolder = async (folderId) => {
 const fetchCardlistFromDeck = async (deckId, ip) => {
   let response;
   try {
-    response = await axios.get(`http://${ip}/decks/${deckId}`);
+    response = await axios.get(`https://${ip}/decks/${deckId}`);
   } catch (e) {
     console.log(e);
   }
