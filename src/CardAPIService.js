@@ -1,6 +1,6 @@
 import axios from 'axios';
-import archidekt from 'archidekt';
-const url = 'https://archidekt-server.vercel.app/';
+// import archidekt from 'archidekt';
+const url = 'https://archidekt-server.vercel.app';
 
 const fetchDecklistFromFolder = async (folderId) => {
   const response = await axios.get(`${url}/api/folder/${folderId}`);
@@ -11,12 +11,12 @@ const fetchDecklistFromFolder = async (folderId) => {
 const fetchCardlistFromDeck = async (deckId, ip) => {
   let response;
   try {
-    response = await axios.get(`${url}/deck/${deckId}`);
+    response = await axios.get(`${url}/api/deck/${deckId}`);
+    const { cards } = response.data;
+    return cards;
   } catch (e) {
     console.log(e);
   }
-  const { cards } = response.data;
-  return cards;
 };
 
 const fetchPriceFromScryfall = async (cardName) => {
