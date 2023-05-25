@@ -16,8 +16,6 @@ function ArchidektReporting() {
   const { value: searchId, bind: bindSearchId } = useInput('');
   const { value: searchIp, bind: bindSearchIp } = useInput('');
 
-  //<FolderList folderId={85681} />
-  //521836
   const updateSearchSetting = (event) => setSearch(event.target.value);
 
   const submitSearch = async () => {
