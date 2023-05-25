@@ -1,17 +1,41 @@
+body {
+  background-color: black;
+  border-radius: 32px;
+  height: 100vh;
+}
+
+#root {
+  height: 90%;
+}
+
 .ArchidektReporting {
   text-align: center;
+  background-color: #52321c;
+  margin: 16px;
+  border-radius: 32px;
+  height: 100%;
 }
 
 .search-container {
   border: 1px solid;
   display: inline-block;
-  padding: 20px;
+  padding: 16px;
+  margin-top: 32px;
+  background-color: #9b5731;
+}
+
+.archidektContainer {
+  color: #6da3bb;
+}
+
+.search-type-container {
+  display: inline-block;
 }
 
 .search-input {
   text-align: center;
   display: block;
-  margin: 20px auto;
+  margin: 16px auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {

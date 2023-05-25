@@ -5,7 +5,7 @@ import React from 'react';
 
 function FolderList(props) {
   return (
-    <div className="ArchidektReporting">
+    <div className="folder-list">
       {props.decks.map(deck => (<DeckContainer key={deck.id} deck={deck} filterCallback={props.filterCallback} />)) }
     </div>
   );
