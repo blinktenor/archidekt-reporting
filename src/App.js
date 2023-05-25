@@ -24,9 +24,13 @@ function ArchidektReporting() {
     setLoading(true);
     if (search === 'Folder' && searchId !== '') {
       const decks = await fetchDecklistFromFolder(searchId, setDecks);
-      setDecks(decks);
-      setLoading(false);
-      setLoaded(true);
+      if (decks) {
+        setDecks(decks);
+        setLoading(false);
+        setLoaded(true);
+      } else {
+        setLoading(false);
+      }
     } else if (search === 'Single' && searchId !== '') {
       setLoading(false);
       setLoaded(true);
@@ -35,6 +39,9 @@ function ArchidektReporting() {
 
   const fetchAndFilterCards = async (deckId, ip) => {
     const cards = await fetchCardlistFromDeck(deckId, ip);
+    if (!cards) {
+      return;
+    }
     return await filterDeck(cards);
   }
 

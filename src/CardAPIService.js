@@ -3,9 +3,15 @@ import axios from 'axios';
 const url = 'https://archidekt-server.vercel.app';
 
 const fetchDecklistFromFolder = async (folderId) => {
-  const response = await axios.get(`${url}/api/folder/${folderId}`);
-  const { decks } = response.data;
-  return decks;
+  try {
+    const response = await axios.get(`${url}/api/folder/${folderId}`);
+    console.log('searching decks')
+    const decks = response.data;
+    console.log(response)
+    return decks;
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const fetchCardlistFromDeck = async (deckId, ip) => {
