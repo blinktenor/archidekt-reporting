@@ -1,5 +1,6 @@
 import React from 'react';
 import './container.css';
+import { getCardArt } from './CardAPIService';
 
 function DeckContainer(props) {
   const [loading, setLoading] = React.useState(true);
@@ -39,8 +40,11 @@ function DeckContainer(props) {
       <div className="deck-name"> { props.deck.name }</div>
       { 
         cards.map((card) => (
-          <div key={card.card.id} className="container">
-            {card.card.oracleCard.name} | {card.card.prices['ck']} | {card.card.prices['tcg']}
+          <div key={card.card.id} className="card-container">
+            <img className="card-img" height="100px" src={getCardArt(card.card.oracleCard.name)} alt={card.card.oracleCard.name} />
+            {card.card.oracleCard.name} 
+            <br />
+            {card.card.prices['ck']} | {card.card.prices['tcg']}
           </div>
         ))
       }

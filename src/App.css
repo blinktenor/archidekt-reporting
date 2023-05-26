@@ -5,6 +5,7 @@ body {
 }
 
 #root {
+  border-radius: 32px;
   height: 90%;
 }
 
@@ -26,6 +27,15 @@ body {
 
 .archidektContainer {
   color: #6da3bb;
+}
+
+.card-container {
+  display: inline-flex;
+  margin: 16px;
+}
+
+.card-img {
+  margin-right: 16px;
 }
 
 .search-type-container {

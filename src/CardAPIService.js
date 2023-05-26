@@ -1,6 +1,6 @@
 import axios from 'axios';
-// import archidekt from 'archidekt';
 const url = 'https://archidekt-server.vercel.app';
+const scryfallCards = {};
 
 const fetchDecklistFromFolder = async (folderId) => {
   try {
@@ -23,10 +23,22 @@ const fetchCardlistFromDeck = async (deckId, ip) => {
   }
 };
 
+//Should be storing more so I can use the art
 const fetchPriceFromScryfall = async (cardName) => {
-  const response = await axios.get(`https://api.scryfall.com/cards/search?q=${cardName} cheapest:usd`);
-  return response.data.data[0].prices.usd;
+  if (scryfallCards[cardName]) {
+    return scryfallCards[cardName].prices.usd;
+  } else {
+    const response = await axios.get(`https://api.scryfall.com/cards/search?q=${cardName} cheapest:usd`);
+    scryfallCards[cardName] = response.data.data[0];
+    return response.data.data[0].prices.usd;
+  }
+}
+
+const getCardArt = (cardName) => {
+  if (scryfallCards[cardName]) {
+    return scryfallCards[cardName].image_uris.png;
+  }
 }
 
 
-export { fetchCardlistFromDeck, fetchDecklistFromFolder, fetchPriceFromScryfall };
+export { getCardArt, fetchCardlistFromDeck, fetchDecklistFromFolder, fetchPriceFromScryfall };
