@@ -36,7 +36,7 @@ const fetchPriceFromScryfall = async (cardName) => {
 
 const getCardArt = (cardName) => {
   if (scryfallCards[cardName]) {
-    return scryfallCards[cardName].image_uris.png;
+    return scryfallCards[cardName].image_uris?.png;
   }
 }
 
