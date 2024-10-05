@@ -23,7 +23,6 @@ const fetchCardlistFromDeck = async (deckId, ip) => {
   }
 };
 
-//Should be storing more so I can use the art
 const fetchPriceFromScryfall = async (cardName) => {
   if (scryfallCards[cardName]) {
     return scryfallCards[cardName].prices.usd;
@@ -34,6 +33,17 @@ const fetchPriceFromScryfall = async (cardName) => {
   }
 }
 
+const fetchRarityFromScryfall = async (cardName) => {
+  if (scryfallCards[cardName]) {
+    return scryfallCards[cardName].rarity;
+  } else {
+    const response = await axios.get(`https://api.scryfall.com/cards/search?q=${cardName}+unique%3Aprints&order=released`);
+    const matches = response.data.data.filter((card) => card.name === cardName);
+    scryfallCards[cardName] = matches[0];
+    return matches[0].rarity;
+  }
+}
+
 const getCardArt = (cardName) => {
   if (scryfallCards[cardName]) {
     return scryfallCards[cardName].image_uris?.png;
@@ -41,4 +51,4 @@ const getCardArt = (cardName) => {
 }
 
 
-export { getCardArt, fetchCardlistFromDeck, fetchDecklistFromFolder, fetchPriceFromScryfall };
+export { getCardArt, fetchCardlistFromDeck, fetchDecklistFromFolder, fetchPriceFromScryfall, fetchRarityFromScryfall };

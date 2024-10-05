@@ -22,12 +22,12 @@ function DeckContainer(props) {
     return (
       <div className="archidektContainer" key={props.deck.id}>
         <div className="deck-name"> { props.deck.name }</div>
-        Loading cards...
+        Loading cards... {props.progress} of {cards.length}
       </div>
     );
   }
 
-  if (!loading && !cards.length) {
+  if (!loading && !cards?.length) {
     return (
       <div className="archidektContainer" key={props.deck.id}>
         <div className="deck-name"> { props.deck.name }</div> is all set!
@@ -45,6 +45,8 @@ function DeckContainer(props) {
             {card.card.oracleCard.name} 
             <br />
             {card.card.prices['ck']} | {card.card.prices['tcg']}
+            <br />
+            {card.card.edition.editionname}
           </div>
         ))
       }

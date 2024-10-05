@@ -1,9 +1,13 @@
 function SearchContainer(props) {
   return (
     <div className="search-container">
-      <div className="search-type-container">
-        <input type="radio" name="searchType" value="Single" defaultChecked={true} onChange={props.updateSearchSetting} /> Single Deck
-        <input type="radio" name="searchType" value="Folder" onChange={props.updateSearchSetting} /> Folder
+      <div className="deck-type-container">
+        <input type="radio" name="deckType" value="Single" defaultChecked={true} onChange={props.updateDeckSetting} /> Single Deck
+        <input type="radio" name="deckType" value="Folder" onChange={props.updateDeckSetting} /> Folder
+      </div>
+      <div className="format-type-container">
+        <input type="radio" name="formatType" value="DollaryDo" defaultChecked={true} onChange={props.updateSearchSetting} /> Dollary Do
+        <input type="radio" name="formatType" value="Uncommmon" onChange={props.updateSearchSetting} /> Uncommon
       </div>
       <br />
       <br />
