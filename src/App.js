@@ -45,11 +45,17 @@ function ArchidektReporting() {
   }
 
   const fetchAndFilterCards = async (deckId, ip) => {
-    const cards = await fetchCardlistFromDeck(deckId, ip);
-    if (!cards) {
+    if (!loading) {
+      setLoading(true);
+      const cards = await fetchCardlistFromDeck(deckId, ip);
+      if (!cards) {
+        return;
+      }
+      await filterDeck(cards);
+      setLoading(false);
+      setLoaded(true);
       return;
     }
-    return await filterDeck(cards);
   }
 
   const filterDeck = async (cards) => {
@@ -123,7 +129,7 @@ function ArchidektReporting() {
     );
   } else {
     if (deck === 'Single') {
-      const deck = {id: searchId, name: ''};
+      const deckInfo = {id: searchId, name: ''};
       return (
         <div className="ArchidektReporting">
           <SearchContainer 
@@ -133,7 +139,7 @@ function ArchidektReporting() {
             bindSearchId={bindSearchId} 
             submitSearch={submitSearch} 
           />
-          <DeckContainer deck={deck} filterCallback={fetchAndFilterCards} ip={searchIp} progress={progress} />
+          <DeckContainer deck={deckInfo} filterCallback={fetchAndFilterCards} ip={searchIp} progress={progress} />
         </div>
       );
     } else {
