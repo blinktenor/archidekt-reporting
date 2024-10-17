@@ -51,10 +51,10 @@ function ArchidektReporting() {
       if (!cards) {
         return;
       }
-      await filterDeck(cards);
+      const filtered = await filterDeck(cards);
       setLoading(false);
       setLoaded(true);
-      return;
+      return filtered;
     }
   }
 
