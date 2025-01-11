@@ -67,8 +67,8 @@ function ArchidektReporting() {
   }
 
   const filterOnRarity = async (cards) => {
-    const removeMaybeboard = cards.filter(card => !card.categories.includes('Maybeboard'));
-    const removeSideboard = removeMaybeboard.filter(card => !card.categories.includes('Sideboard'));
+    const removeMaybeboard = cards.filter(card => !card.categories?.includes('Maybeboard'));
+    const removeSideboard = removeMaybeboard.filter(card => !card.categories?.includes('Sideboard'));
     await lookupRarityOnScryfall(removeSideboard);
     const nonUncommon = removeSideboard.filter(card => (scryfallRarity[card.card.oracleCard.name] !== 'uncommon'));
     return nonUncommon.filter(card => (scryfallRarity[card.card.oracleCard.name] !== 'common'));
@@ -88,8 +88,8 @@ function ArchidektReporting() {
   }
 
   const filterOnPrice = async (cards) => {
-    const removeMaybeboard = cards.filter(card => !card.categories.includes('Maybeboard'));
-    const removeSideboard = removeMaybeboard.filter(card => !card.categories.includes('Sideboard'));
+    const removeMaybeboard = cards.filter(card => !card.categories?.includes('Maybeboard'));
+    const removeSideboard = removeMaybeboard.filter(card => !card.categories?.includes('Sideboard'));
     const ninetyNinefiltered = removeSideboard.filter(card => (!(card.card.prices['ck'] < 1 || card.card.prices['tcg'] < 1)));
     const commanderFiltered = ninetyNinefiltered.filter(card => (!(card.card.prices['ck'] < 5 || card.card.prices['tcg'] < 5) || !card.categories.includes('Commander')));
     await lookupPricesOnScryfall(commanderFiltered);
